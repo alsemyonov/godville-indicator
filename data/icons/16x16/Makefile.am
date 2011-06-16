@@ -4,8 +4,7 @@ context = apps
 
 iconsdir = $(themedir)/$(size)/$(context)
 
-icons_DATA = \
-	godville.png
+icons_DATA = godville.png godville-inactive.png
 
 EXTRA_DIST =		\
 	$(icons_DATA)	\

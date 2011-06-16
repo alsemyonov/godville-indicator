@@ -17,9 +17,9 @@ namespace Godville {
     public StatusIndicator (string name) {
       godname = name;
 
-      indicator = new Indicator (name, "godville", IndicatorCategory.APPLICATION_STATUS);
+      indicator = new Indicator (name, "godville-inactive", IndicatorCategory.APPLICATION_STATUS);
       indicator.set_status (IndicatorStatus.ACTIVE);
-      indicator.set_attention_icon ("indicator-messages-new");
+      indicator.set_attention_icon ("godville");
 
       menu = new Menu ();
 
