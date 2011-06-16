@@ -9,28 +9,35 @@ namespace Godville {
     private string response;
     private StatusIndicator indicator;
 
-    public bool arena_fight;
-    public bool town;
-    public int bricks_cnt;
-    public int distance;
-    public int exp_progress;
-    public int godpower;
-    public int health;
-    public int inventory_max_num;
-    public int inventory_num;
-    public int level;
-    public int max_health;
-    public int quest_progress;
-    public string alignment;
-    public string clan;
-    public string clan_position;
-    public string diary_last;
-    public string gender;
     public string godname;
-    public string gold_approx;
+    public int godpower;
+
+    public string gender;
     public string hero_name;
     public string motto;
+    public int level;
+    public int exp_progress;
+    public string alignment;
+
+    public string diary_last;
+
+    public int health;
+    public int max_health;
+    public int inventory_num;
+    public int inventory_max_num;
+    public string gold_approx;
+    public int bricks_cnt;
+    public int distance;
     public string quest;
+    public int quest_progress;
+
+    public bool arena_fight;
+    public bool expired;
+
+    // TODO show this in indicator too
+    public bool town;
+    public string clan;
+    public string clan_position;
     public string town_name;
 
     private int timeout_number = 0;
@@ -146,6 +153,13 @@ namespace Godville {
           } else {
             arena_fight = false;
           }
+        } else if (node_name == "expired") {
+          if (node_content == "true") {
+            expired = true;
+          } else {
+            expired = false;
+          }
+        // TODO collect inventory in Gee Collection, then show it in indicator
         } else {
           debug ("%s: %s".printf (node_name, node_content));
         }

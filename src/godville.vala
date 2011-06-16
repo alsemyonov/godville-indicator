@@ -24,21 +24,29 @@ using Gtk;
 using Notify;
 
 namespace Godville {
-    static int main (string[] args) {
-      Gtk.init (ref args);
+  static Status status;
+  static int main (string[] args) {
+    Gtk.init (ref args);
 
-      string app_name = "Годвилль";
-      string name = "Мартынчик";
+    string app_name = "Годвилль";
 
-      Notify.init (app_name);
-      var settings = new GLib.Settings ("net.godville.indicator");
+    Notify.init (app_name);
+    var settings = new GLib.Settings ("net.godville.indicator");
 
-      debug (settings.get_string("name"));
-      var indicator = new StatusIndicator (name);
-      var status = new Status (name, indicator);
-      status.refresh ();
-
-      Gtk.main ();
-      return 0;
+    string name = args[1];
+    if (name == null) {
+      name = settings.get_string ("name");
     }
+    if (name == "") {
+      name = "Мартынчик";
+    }
+    settings.set_string ("name", name);
+
+    var indicator = new StatusIndicator (name);
+    status = new Status (name, indicator);
+    status.refresh ();
+
+    Gtk.main ();
+    return 0;
+  }
 }
