@@ -1,0 +1,15 @@
+Source: godville
+Section: unknown
+Priority: extra
+Maintainer: Alexander Semyonov <al@semyonov.us>
+Build-Depends: debhelper (>= 7.0.50~), autotools-dev
+Standards-Version: 3.9.1
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/godville.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/godville.git;a=summary
+
+Package: godville
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
