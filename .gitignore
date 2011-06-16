@@ -1,3 +1,5 @@
+godville-*.tar.gz
+godville-*.tar.bz2
 *.c
 *.h
 *.o
