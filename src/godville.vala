@@ -21,18 +21,22 @@
 
 using GLib;
 using Gtk;
-using AppIndicator;
+using Notify;
 
 namespace Godville {
     static int main (string[] args) {
       Gtk.init (ref args);
 
+      string app_name = "Годвилль";
       string name = "Мартынчик";
 
+      Notify.init (app_name);
       var settings = new GLib.Settings ("net.godville.indicator");
+
       debug (settings.get_string("name"));
       var indicator = new StatusIndicator (name);
       var status = new Status (name, indicator);
+      status.refresh ();
 
       Gtk.main ();
       return 0;

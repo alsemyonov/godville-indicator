@@ -14,7 +14,7 @@ godville_SOURCES = \
 	#godville-application_window.vala \
 	$(NULL)
 
-godville_VALAFLAGS = --pkg gtk+-2.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg appindicator-0.1
+godville_VALAFLAGS = --pkg gtk+-2.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg appindicator-0.1 --pkg libnotify
 
 godville_LDADD = \
 	$(GODVILLE_LIBS) \

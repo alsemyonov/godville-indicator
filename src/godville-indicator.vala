@@ -1,5 +1,6 @@
 using Gtk;
 using AppIndicator;
+using Notify;
 
 namespace Godville {
   public class StatusIndicator {
@@ -8,6 +9,7 @@ namespace Godville {
 
     private MenuItem godname_item;
     private MenuItem heroname_item;
+    private MenuItem health_item;
     private MenuItem diary_item;
 
     private string godname;
@@ -51,6 +53,14 @@ namespace Godville {
       separator.show ();
       menu.append (separator);
 
+      health_item = new MenuItem();
+      health_item.sensitive = false;
+      menu.append (health_item);
+
+      separator = new SeparatorMenuItem ();
+      separator.show ();
+      menu.append (separator);
+
       var item = new MenuItem.with_label ("Выход");
       item.activate.connect (Gtk.main_quit);
       item.show ();
@@ -67,6 +77,9 @@ namespace Godville {
       godname_item.set_label (status.godname);
       heroname_item.set_label (status.hero_name);
 
+      health_item.set_label ("Здоровье: %i/%i".printf (status.health, status.max_health));
+      health_item.show();
+
       if (status.diary_last == "") {
         diary_item.hide();
       } else {
@@ -74,7 +87,13 @@ namespace Godville {
         diary_item.show();
       }
 
-      indicator.set_label ("%i / %i".printf (status.health, status.max_health), "1000 / 1000");
+      indicator.set_label ("%i".printf (status.level), "1000 / 1000");
+      var notification = new Notification ("%s (%i/%i)".printf (status.hero_name, status.health, status.max_health), status.diary_last, null, null);
+      try {
+        notification.show();
+      } catch (Error e) {
+        message ("Notification. %s: %s".printf (notification.summary, notification.body));
+      }
     }
   }
 }

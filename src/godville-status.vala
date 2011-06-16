@@ -34,28 +34,28 @@ namespace Godville {
     public string town_name;
 
     private int timeout_number = 0;
+    private bool autorefresh = true;
 
     public Status(string name, StatusIndicator indicator) {
       godname = name;
       this.indicator = indicator;
       url = "http://godville.net/gods/api/%s.xml".printf (godname);
 
-      refresh ();
       Timeout.add (60000, () => {
         timeout_number++;
         message ("Timeout №%i".printf (timeout_number));
         refresh ();
-        return true;
+        return autorefresh;
       });
     }
 
-    void refresh () {
+    public void refresh () {
       load ();
       parse ();
       indicator.update_status (this);
     }
 
-    void load () {
+    private void load () {
       message ("Getting data from %s\n".printf (url));
       // Create an HTTP session for godville
       var session = new Soup.SessionAsync ();
@@ -66,7 +66,7 @@ namespace Godville {
       response = (string) message.response_body.flatten ().data;
     }
 
-    public void parse () {
+    private void parse () {
       // Parse the document from response
       Xml.Doc* doc = Parser.parse_memory (response, (int) response.length);
 
