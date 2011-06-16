@@ -93,6 +93,13 @@ namespace Godville {
     }
 
     public void update_status(Status status) {
+      var notification = new Notification (
+        "%s (%i/%i)".printf (status.hero_name, status.health, status.max_health),
+        status.diary_last,
+        null,
+        null
+      );
+
       god_item.set_label (
         "%s\nПрана: %i%%".printf (status.godname, status.godpower)
       );
@@ -104,22 +111,43 @@ namespace Godville {
         gender = "Героиня";
       }
 
+      string motto;
       if (status.motto == "") {
-        hero_item.set_label (
-          "%s — %s\nУровень %i и ещё %i%%\nХарактер: %s".printf (gender, status.hero_name, status.level, status.exp_progress, status.alignment)
-        );
+        motto = "\n";
       } else {
-        hero_item.set_label (
-          "%s — %s:\n«%s»\nУровень %i и ещё %i%%\nХарактер: %s".printf (gender, status.hero_name, status.motto, status.level, status.exp_progress, status.alignment)
-        );
+        motto = ":\n«%s»\n".printf (status.motto);
       }
 
-      statistics_item.set_label ("Здоровье: %i/%i\nИнвентарь: %i/%i\nЗолота: %s\nКирпичей для храма: %i\nСтолбов от столицы: %i шт.\nЗадание: %s (%i%%)".printf (
+      string clan;
+      if (status.clan == "") {
+        clan = "";
+      } else {
+        clan = "\nГильдия: %s (%s)".printf (status.clan, status.clan_position);
+      }
+
+      hero_item.set_label (
+        "%s — %s:%sУровень %i и ещё %i%%\nХарактер: %s%s".printf (
+          gender, status.hero_name,
+          motto,
+          status.level, status.exp_progress,
+          status.alignment,
+          clan
+        )
+      );
+
+      string town;
+      if (status.town_name == "") {
+        town = "Столбов от столицы: %i шт.".printf (status.distance);
+      } else {
+        town = "Город: %s".printf (status.town_name);
+      }
+
+      statistics_item.set_label ("Здоровье: %i/%i\nИнвентарь: %i/%i\nЗолота: %s\nКирпичей для храма: %i\n%s\nЗадание: %s (%i%%)".printf (
         status.health, status.max_health,
         status.inventory_num, status.inventory_max_num,
         status.gold_approx,
         status.bricks_cnt,
-        status.distance,
+        town,
         status.quest,
         status.quest_progress));
       statistics_item.show();
@@ -138,12 +166,7 @@ namespace Godville {
       }
 
       indicator.set_label ("%i".printf (status.level), "100");
-      var notification = new Notification (
-        "%s (%i/%i)".printf (status.hero_name, status.health, status.max_health),
-        status.diary_last,
-        null,
-        null
-      );
+
       try {
         notification.show();
       } catch (Error e) {

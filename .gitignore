@@ -19,3 +19,4 @@ ltmain.sh
 depcomp
 mkinstalldirs
 stamp-*
+src/godville

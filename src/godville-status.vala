@@ -28,6 +28,7 @@ namespace Godville {
     public string gold_approx;
     public int bricks_cnt;
     public int distance;
+    public string town_name;
     public string quest;
     public int quest_progress;
 
@@ -35,12 +36,9 @@ namespace Godville {
     public bool expired;
 
     // TODO show this in indicator too
-    public bool town;
     public string clan;
     public string clan_position;
-    public string town_name;
 
-    private int timeout_number = 0;
     private bool autorefresh = true;
 
     public Status(string name, StatusIndicator indicator) {
@@ -49,8 +47,6 @@ namespace Godville {
       url = "http://godville.net/gods/api/%s.xml".printf (godname);
 
       Timeout.add (60000, () => {
-        timeout_number++;
-        message ("Timeout №%i".printf (timeout_number));
         refresh ();
         return autorefresh;
       });
@@ -122,11 +118,6 @@ namespace Godville {
           diary_last = (string) node_content;
         } else if (node_name == "town_name") {
           town_name = (string) node_content;
-          if (town_name == "") {
-            town = false;
-          } else {
-            town = true;
-          }
         } else if (node_name == "level") {
           level = (int) node_content.to_int ();
         } else if (node_name == "health") {
