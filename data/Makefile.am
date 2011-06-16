@@ -7,12 +7,12 @@ desktopdir = $(datadir)/applications
 desktop_in_files = godville.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-godville_SCHEMAS = net.godville.Indicator.gschema.xml
+gsettings_SCHEMAS = net.godville.indicator.gschema.xml
 @GSETTINGS_RULES@
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	$(godville_SCHEMAS) \
+	$(gsettings_SCHEMAS) \
 	$(NULL)
 
 clean-local :
