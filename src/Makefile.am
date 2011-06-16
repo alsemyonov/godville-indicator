@@ -1,19 +1,22 @@
-NULL = 
+NULL =
 
 AM_CPPFLAGS = \
 	$(GODVILLE_CFLAGS) \
 	-include $(CONFIG_HEADER) \
 	$(NULL)
 
-bin_PROGRAMS = Godville
+bin_PROGRAMS = godville
 
-Godville_SOURCES = \
-	main.vala \
+godville_SOURCES = \
+	godville.vala \
+	godville-indicator.vala \
+	godville-status.vala \
+	#godville-application_window.vala \
 	$(NULL)
 
-Godville_VALAFLAGS = --pkg gtk+-2.0
+godville_VALAFLAGS = --pkg gtk+-2.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg appindicator-0.1
 
-Godville_LDADD = \
+godville_LDADD = \
 	$(GODVILLE_LIBS) \
 	$(NULL)
 

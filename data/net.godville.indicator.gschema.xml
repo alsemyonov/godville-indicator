@@ -1,0 +1,11 @@
+<schemalist>
+  <schema id="net.godville.indicator" path="/net/godville/indicator/" gettext-domain="godville">
+    <key name="name" type="s">
+      <default>""</default>
+      <summary>A god name</summary>
+      <description>
+        God name on http://godville.net/
+      </description>
+    </key>
+  </schema>
+</schemalist>
