@@ -1,0 +1,10 @@
+[Desktop Entry]
+_Name=Godville
+_X-GNOME-Fullname=Godville Indicator
+_Comment=Follow your hero adventures everytime
+Exec=godville
+Terminal=false
+Type=Application
+StartupNotify=true
+Icon=godville
+Categories=GNOME;GTK;Game

@@ -1,4 +1,9 @@
-AC_INIT([godville], [0.1.0], [al@semyonov.us], [godville])
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ([2.64])
+AC_INIT([godville],
+        [0.1.0],
+        [al@semyonov.us],
+        [godville])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS(config.h)
 AM_INIT_AUTOMAKE([dist-bzip2])
@@ -37,7 +42,8 @@ PKG_CHECK_MODULES(GODVILLE, \
                   libsoup-2.4 >= $SOUP_REQUIRED \
                   libxml-2.0 >= $XML_REQUIRED \
                   appindicator-0.1 >= $APPINDICATOR_REQUIRED \
-                  libnotify >= $LIBNOTIFY_REQUIRED)
+                  libnotify >= $LIBNOTIFY_REQUIRED
+                 )
 AC_SUBST(GODVILLE_CFLAGS)
 AC_SUBST(GODVILLE_LIBS)
 
@@ -46,6 +52,7 @@ GLIB_GSETTINGS
 AC_CONFIG_FILES([Makefile
 	src/Makefile
 	data/Makefile
+	data/pixmaps/Makefile
 	po/Makefile.in])
 
 AC_OUTPUT

@@ -1,12 +1,7 @@
 NULL =
 
 #Build in these directories:
-
-SUBDIRS = \
-	data \
-	src \
-	po \
-	$(NULL)
+SUBDIRS = data src po
 
 godvilledocdir = ${prefix}/doc/godville
 godvilledoc_DATA = \
