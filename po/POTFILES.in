@@ -1,3 +1,7 @@
 [encoding: UTF-8]
 # List of source files which contain translatable strings.
-src/main.vala
+data/godville.desktop.in
+src/godville-application_window.vala
+src/godville-indicator.vala
+src/godville-status.vala
+src/godville.vala

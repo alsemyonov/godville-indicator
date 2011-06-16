@@ -1,1 +1,4 @@
-src/main.c
+src/godville-application_window.c
+src/godville-indicator.c
+src/godville-status.c
+src/godville.c
