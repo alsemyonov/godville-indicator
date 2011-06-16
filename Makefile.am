@@ -19,6 +19,7 @@ godvilledoc_DATA = \
 	$(NULL)
 
 EXTRA_DIST = \
+	$(godville_SCHEMAS) \
 	$(godvilledoc_DATA) \
 	intltool-extract.in \
 	intltool-merge.in \
