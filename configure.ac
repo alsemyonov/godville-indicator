@@ -52,7 +52,8 @@ GLIB_GSETTINGS
 AC_CONFIG_FILES([Makefile
 	src/Makefile
 	data/Makefile
-	data/pixmaps/Makefile
+	data/icons/Makefile
+	data/icons/16x16/Makefile
 	po/Makefile.in])
 
 AC_OUTPUT
