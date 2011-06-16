@@ -25,4 +25,3 @@ EXTRA_DIST = \
 
 DISTCLEANFILES = \
 	$(NULL)
-

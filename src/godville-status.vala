@@ -56,7 +56,6 @@ namespace Godville {
     }
 
     private void load () {
-      message ("Getting data from %s\n".printf (url));
       // Create an HTTP session for godville
       var session = new Soup.SessionAsync ();
       var message = new Soup.Message ("GET", url);
@@ -71,8 +70,7 @@ namespace Godville {
       Xml.Doc* doc = Parser.parse_memory (response, (int) response.length);
 
       if (doc == null) {
-        stderr.printf ("User %s not found", godname);
-        return;
+        error ("User %s not found", godname);
       }
 
       // Get the root node. notice the dereferencing operator -> instead of .
@@ -80,8 +78,7 @@ namespace Godville {
       if (root == null) {
         // Free the document manually before returning
         delete doc;
-        stderr.printf ("The url '%s' is incorrect", url);
-        return;
+        error ("The url '%s' is incorrect", url);
       }
 
       // TODO parse root
@@ -150,7 +147,7 @@ namespace Godville {
             arena_fight = false;
           }
         } else {
-          debug ("%s: %s\n".printf (node_name, node_content));
+          debug ("%s: %s".printf (node_name, node_content));
         }
 
         //TODO parse node’s properties

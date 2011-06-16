@@ -9,7 +9,7 @@ namespace Godville {
 
     private MenuItem godname_item;
     private MenuItem heroname_item;
-    private MenuItem health_item;
+    private MenuItem statistics_item;
     private MenuItem diary_item;
 
     private string godname;
@@ -45,17 +45,21 @@ namespace Godville {
       heroname_item.show ();
       menu.append (heroname_item);
 
-      diary_item = new MenuItem();
-      diary_item.sensitive = false;
-      menu.append (diary_item);
-
       var separator = new SeparatorMenuItem ();
       separator.show ();
       menu.append (separator);
 
-      health_item = new MenuItem();
-      health_item.sensitive = false;
-      menu.append (health_item);
+      diary_item = new MenuItem();
+      /*diary_item.sensitive = false;*/
+      menu.append (diary_item);
+
+      separator = new SeparatorMenuItem ();
+      separator.show ();
+      menu.append (separator);
+
+      statistics_item = new MenuItem();
+      /*statistics_item.sensitive = false;*/
+      menu.append (statistics_item);
 
       separator = new SeparatorMenuItem ();
       separator.show ();
@@ -75,10 +79,20 @@ namespace Godville {
 
     public void update_status(Status status) {
       godname_item.set_label (status.godname);
-      heroname_item.set_label (status.hero_name);
 
-      health_item.set_label ("Здоровье: %i/%i".printf (status.health, status.max_health));
-      health_item.show();
+      if (status.motto == "") {
+        heroname_item.set_label (status.hero_name);
+      } else {
+        heroname_item.set_label ("%s:\n«%s»".printf (status.hero_name, status.motto));
+      }
+
+      statistics_item.set_label ("Здоровье: %i/%i\nИнвентарь: %i/%i\nЗолота: %s\nКирпичей для храма: %i\nСтолбов от столицы: %i шт.".printf (
+        status.health, status.max_health,
+        status.inventory_num, status.inventory_max_num,
+        status.gold_approx,
+        status.bricks_cnt,
+        status.distance));
+      statistics_item.show();
 
       if (status.diary_last == "") {
         diary_item.hide();
@@ -87,8 +101,13 @@ namespace Godville {
         diary_item.show();
       }
 
-      indicator.set_label ("%i".printf (status.level), "1000 / 1000");
-      var notification = new Notification ("%s (%i/%i)".printf (status.hero_name, status.health, status.max_health), status.diary_last, null, null);
+      indicator.set_label ("%i".printf (status.level), "100");
+      var notification = new Notification (
+        "%s (%i/%i)".printf (status.hero_name, status.health, status.max_health),
+        status.diary_last,
+        null,
+        null
+      );
       try {
         notification.show();
       } catch (Error e) {

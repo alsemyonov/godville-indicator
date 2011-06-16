@@ -1,14 +1,15 @@
-NULL = 
+NULL =
 
 #Build in these directories:
 
 SUBDIRS = \
+	data \
 	src \
 	po \
 	$(NULL)
 
-Godvilledocdir = ${prefix}/doc/Godville
-Godvilledoc_DATA = \
+godvilledocdir = ${prefix}/doc/godville
+godvilledoc_DATA = \
 	ChangeLog \
 	README \
 	COPYING \
@@ -18,7 +19,7 @@ Godvilledoc_DATA = \
 	$(NULL)
 
 EXTRA_DIST = \
-	$(Godvilledoc_DATA) \
+	$(godvilledoc_DATA) \
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in\
