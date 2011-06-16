@@ -1,5 +1,6 @@
 godville (0.1.0-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release.
+  * This is my first debian package.
 
  -- Alexander Semyonov <al@semyonov.us>  Fri, 17 Jun 2011 02:28:15 +0400

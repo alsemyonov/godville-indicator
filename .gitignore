@@ -22,3 +22,5 @@ stamp-*
 src/godville
 data/godville.desktop
 po/.intltool-merge-cache
+po/POTFILES
+.pc

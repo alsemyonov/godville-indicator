@@ -12,7 +12,7 @@ godville_SCHEMAS = net.godville.Indicator.gschema.xml
 
 EXTRA_DIST = \
 	$(desktop_in_files) \
-	net.godville.indicator.gschema.xml \
+	$(godville_SCHEMAS) \
 	$(NULL)
 
 clean-local :
